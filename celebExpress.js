@@ -2,9 +2,10 @@ var express = require( "express" )
 var ejs = require( "ejs" )
 var app = express();
 
-var celebName = "CHUCK PALAHNIUK";
+var celebName = "Chuck_Palahniuk";
 var celeb = {
 	results: {
+		"instructions": "Guess the name in this format: Anna_Kendrick",
 		"profession": "Writer",
 		"known_for": [ "writing awesome books and being awesome", "Portlander", "funny poignant books", "fiction" ],
 		"gender": "male",
@@ -19,7 +20,7 @@ app.get( '/', function ( request, response ) {
 
 app.get( '/:guess', function ( request, response ) {
 
-	var celebGuess = (request.params.guess).toUpperCase();
+	var celebGuess = request.params.guess;
 	if ( celebName === celebGuess ) {
 		response.json( {
 			correct: "Nice work!"
