@@ -5,9 +5,9 @@ var app = express();
 var celebName = "BEAN";
 var celeb = {
 	results: {
-		"profession": "tv star",
-		"known_for": [ "90s sitcom", "Modern Lawyer Comedy-Drama" ],
-		"gender": "male",
+		"profession": "actor",
+		"known_for": [ "movie star", "cloning", "comedy" ],
+		"gender": "",
 		"first letter of first name": "m",
 		"extra hint": "Time out!"
 	}

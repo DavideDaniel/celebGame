@@ -1,29 +1,37 @@
 require 'httparty'
 require 'json'
+require 'pry'
 
 puts "New player"
+puts "Enter ip"
 
-ip_address = gets.chomp
+http_part = "http://localhost:"
+
+ip_address = http_part + gets.chomp
 
 url = ip_address + "/"
-response = JSON.parse(HTTParty.get(url))
+response = HTTParty.get(url)
 
-wrong = false
+correct = false
 
-
-
-while (!wrong) do
+while (!correct) do
+	puts response    
+    puts "Make a guess"
     guess = gets.chomp
-    guess_url = ip_address + "/" + guess
-    answer = JSON.parse(HTTParty.get(url))
-    if answer["results"]["keys"][""]
-
-      wrong = false
+    guess_url = url + guess
+    guess_url = guess_url.gsub!(" ", "%20")
+    puts guess_url
+    answer = HTTParty.get(guess_url)
+    if answer.keys[0] == "correct"
+      
+      puts "You're right"
+      correct = true
 
     else
 
+      puts "Wrong? Guess again?"
 
-      wrong = true
+      correct = false
     end
 
   end
